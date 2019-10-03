@@ -27,5 +27,4 @@ https://github.com/tanner-burkin/jtbd4k/blob/master/assignment-two/Assignment%20
 14. removeTA()
 15. setSubmissionDueDate()
 16. getSubmissionDate()
-17. getSubmissionPawprint
-18. 
+17. getSubmissionPawprint()
