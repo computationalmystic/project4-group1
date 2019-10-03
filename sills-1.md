@@ -4,7 +4,7 @@
 #To Do List for implementing code based on Architecture and System Design Process 
 
 #Create classes
-##Classes for Class Diagram:
+#Classes for Class Diagram:
 1. Students - Username, Password, User Type
 2. Instructor - Username, Password, User Type
 3. TA - Username, Password, User Type
@@ -14,7 +14,7 @@
 7. Credentials - Username, Password, User Type
 
 #Create Methods
-##Methods for Class Diagram:
+#Methods for Class Diagram:
 1. Login - Function used to log a user into the program
 2. Logout - Function used to log a user out of the program
 3. addInstructor - Function that adds an instructor to the Database
