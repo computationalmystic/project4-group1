@@ -8,7 +8,7 @@ https://github.com/tanner-burkin/jtbd4k/blob/master/assignment-two/Assignment%20
   4. Define classes and methods for submitting assignment
   5. Define classes and methods for logging in and logging out
   6. Figure out where to store database and what to use for it
-  7.Connect the UI to the database
+  7. Connect the UI to the database
   8. Define classes and methods for creating assignment
   9. Figure out a way to group class assignments
   10. Allow TA to download all class submissions all at once
