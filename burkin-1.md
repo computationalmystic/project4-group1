@@ -1,6 +1,18 @@
 https://github.com/tanner-burkin/jtbd4k/blob/master/assignment-two/Assignment%204.pdf
 
 # To-Do List
+
+  Create User Interface
+  Create Database Schema
+  Create primary keys for database
+  Define classes and methods for submitting assignment
+  Define classes and methods for logging in and logging out
+  Figure out where to store database and what to use for it
+  Connect the UI to the database
+  Define classes and methods for creating assignment
+  Figure out a way to group class assignments
+  Allow TA to download all class submissions all at once
+
 ## Classes
 1.  Teacher
 2.  Student
