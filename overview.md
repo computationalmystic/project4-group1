@@ -1,5 +1,7 @@
 # Overview Document
 
+## To-Do List
+
 ## Classes
 
     Student
@@ -34,7 +36,8 @@
     downloadAssignment()
     searchStudents()
    
-## Documents
+## Description of Next Steps
+    
+    If we were moving forward with this project then the next thing that we would do is 
 
-
-## To-Do
+    
