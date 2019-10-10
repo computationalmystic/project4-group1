@@ -2,6 +2,17 @@
 
 ## To-Do List
 
+    1. Create User Interface
+    2. Create Database Schema
+    3. Create primary keys for database
+    4. Define classes and methods for submitting assignment
+    5. Define classes and methods for logging in and logging out
+    6. Figure out where to store database and what to use for it
+    7. Connect the UI to the database
+    8. Define classes and methods for creating assignment
+    9. Figure out a way to group class assignments
+    10. Allow TA to download all class submissions all at once
+
 ## Classes
 
     Student
