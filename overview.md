@@ -49,6 +49,9 @@
    
 ## Description of Next Steps
     
-    If we were moving forward with this project then the next thing that we would do is build a web interface that would be accessible to all users. From here a database would be created to store important information used by users. This database would also incorporate all user information in order to support login/logout functionality. 
+    If we were moving forward with this project then the next thing that we would do is build
+    a web interface that would be accessible to all users. From here a database would be created
+    to store important information used by users. This database would also incorporate all user
+    information in order to support login/logout functionality. 
 
     
