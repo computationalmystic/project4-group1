@@ -13,7 +13,7 @@
     9. Figure out a way to group class assignments
     10. Allow TA to download all class submissions all at once
 
-## Classes
+## Classes To Be Implemented
 
     Student
     Professor
@@ -25,7 +25,7 @@
     Section
   
 
-## Functions
+## Functions To Be Implemented
 
     login()
     logout()
