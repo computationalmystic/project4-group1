@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Working Title</title>
+        <script src="Script.js"></script>
+        <style>
+            body {
+                background-color: beige;
+            }
+            div#navbar {
+                position: absolute;
+                text-align: center;
+                background-color: darkgrey;
+                padding: 10px;
+                width: 100%;
+                top: 0px;
+                left: 0px;
+                border-bottom: 2px solid black;
+                font-family: monospace
+            }
+            div#displayBox {
+                padding: 100px;
+                padding-top: 200px;
+                margin: auto;
+                position: relative;
+                
+            }
+            #displayBox div {
+                border: 2px solid black;
+                margin: auto;
+                width: 30%;
+                float: left;
+                height: 400px;
+            }
+        </style>
+    </head>
+    <body onload="repo_groupLoad()">
+        <div id="navbar">
+            <h1> Software Engineering Fall 2019: Group 1</h1>
+            <h2>Andrew Cox - - Henry Sills - - John Burkin</h2>
+            
+        </div>
+        <div id="displayBox">
+            <div id="topCommitters"></div>
+            <div id="acceptanceRate">Box 2</div>
+            <div id="tbd">Box 3
+                <select id="repo_group" onchange="repo_groupChange()">
+                </select>
+                <select id="repos" onchange="loadVisuals()">
+                </select>
+            </div>
+        </div>
+    </body>
+</html>
