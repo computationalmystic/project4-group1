@@ -5,6 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-weidth, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="project.css">
         <script src="index.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -12,21 +13,25 @@
         <style>
             .carousel-item{
                 color: white;
-                margin-top: 400px;
             }
         </style>
     </head>
     <body style="background-color: black;">
         <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+            <h1 id="pageHeader"></h1>
             <div class="carousel inner" style="text-align: center">
                 <div id="slide1" class="carousel-item active" data-slide-to="0">
-                    <div class="populationArea"></div>
+                    <div id="populationArea1"></div>
+                    <div id="errorArea1" class="error"></div>
                 </div>
                 <div id="slide2" class="carousel-item" data-slide-to="1">
-                    <div class="populationArea"></div>
+                    <div id="populationArea2"></div>
+                    <div id="errorArea2" class="error"></div>
+
                 </div>
                 <div id="slide3" class="carousel-item" data-slide-to="2">
-                    <div class="populationArea"></div>
+                    <div id="populationArea3"></div>
+                    <div id="errorArea3" class="error"></div>
                 </div>
             </div>
             <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
@@ -52,18 +57,22 @@
                 switch(target){
                     case 0:
                         slide = document.getElementById("slide1");
-                        slide.childNodes[1].innerHTML = "The repos are being loaded..."
-                        loadRepos();
+                        slide.childNodes[1].innerHTML = "The repos are being loaded...";
+                        errorArea1.innerHTML = "";
+                        repo_groupLoad();
+                        
                         break;
                     case 1:
+                        document.getElementById("pageHeader").innerHTML = "";
                         slide = document.getElementById("slide2");
-                        slide.childNodes[1].innerHTML = "The pull requests are being loaded..."
-                        loadPullRequests();
+                        slide.childNodes[1].innerHTML = "The pull requests are being loaded...";
+                        errorArea2.innerHTML = "";
                         break;
                     case 2:
+                        document.getElementById("pageHeader").innerHTML = ""
                         slide = document.getElementById("slide3");
-                        slide.childNodes[1].innerHTML = "Other"
-                        load()
+                        slide.childNodes[1].innerHTML = "Other";
+                        errorArea3.innerHTML = "";
                         break;
                     default:
                         console.log("There was no target slide.");

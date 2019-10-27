@@ -31,7 +31,6 @@ function repo_groupLoad() {
 function repo_groupChange(id){
     var xhttp = new XMLHttpRequest();
     var selected = document.getElementById(id);
-    console.log(id);
 
     xhttp.onreadystatechange = function() {
         clearPopulationArea();
@@ -44,7 +43,7 @@ function repo_groupChange(id){
             stageHTML = "<ol>";
             console.log(obj);
             for(i = 0; i < obj.repos.length; i++){
-                appendText = "<li><a href=# onclick='loadVisuals(id, "+ obj.repos[i].repo_id + ")'>" + obj.repos[i].repo_name + "</a></li>"
+                appendText = "<li><a href=# onclick='loadVisuals(" + id + "," + obj.repos[i].repo_id + ")'>" + obj.repos[i].repo_name + "</a></li>"
                 stageHTML += appendText;
             }
             stage.innerHTML = stageHTML;
@@ -65,23 +64,32 @@ function topCommitters(repoGroupID, reposID){
     var xhttp = new XMLHttpRequest();
     
     xhttp.onreadystatechange = function() {
-        var text = '{ "topCommitters" : ' + xhttp.responseText + '}';
-        var obj = JSON.parse(text);
-        console.log(obj);
-        var email;
-        var committers = "<h2>Top Committers:</h2><ol>";
-        var i;
-        for(i = 0;(obj.topCommitters[i].email != "other_contributors") && i < 10; i++){
-            console.log(i);
-            console.log(obj.topCommitters[i].email);
-            
-            email = obj.topCommitters[i].email;
-            committers = committers + "<li>" + email + "  " + obj.topCommitters[i].commits + "</li>";
+        
+            if(this.readyState == 4 && this.status == 500){
+            console.log("There was an internal server error. Please try a different repository.");
+            error = document.getElementById("errorArea1");
+            error.innerHTML = "There was an internal server error. Please try a different repository."            
         }
-        committers = committers + "</ol>";
-        document.getElementById("topCommitters").innerHTML = committers;
+        if(this.readyState == 4 && this.status == 200){
+            var text = '{ "topCommitters" : ' + xhttp.responseText + '}';
+            var obj = JSON.parse(text);
+            console.log(obj);
+            var email;
+            var i;
+            var committers = "<ol>"
+            for(i = 0;(obj.topCommitters[i].email != "other_contributors") && i < 10; i++){
+                console.log(i);
+                console.log(obj.topCommitters[i].email);
+            
+                email = obj.topCommitters[i].email;
+                committers = committers + "<li>" + email + "  " + obj.topCommitters[i].commits + "</li>";
+            }
+            committers = committers + "</ol>";
+            document.getElementById("populationArea1").innerHTML = committers;
+            document.getElementById("errorArea1").innerHTML = "";
+        }
     };
     
-    xhttp.open("GET","http://augur.osshealth.io:5000/api/unstable/repo-groups/" + repoGroupID + "/repos/" + repoID + "/top-committers", true);
+    xhttp.open("GET","http://augur.osshealth.io:5000/api/unstable/repo-groups/" + repoGroupID + "/repos/" + reposID + "/top-committers", true);
     xhttp.send();
 }

@@ -1,0 +1,15 @@
+ol{
+    list-style: none;
+}
+
+#pageHeader{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: darkgray;
+        
+}
+
+.error{
+    color: red;
+}
