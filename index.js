@@ -52,7 +52,9 @@ function repo_groupChange(id,slide){
             if(slide == "populationArea1"){
                 stage = document.getElementById("populationArea1");
             } else if(slide == "populationArea2"){
-                stage = document.getElementById("popukationArea2");
+                stage = document.getElementById("populationArea2");
+            }else if(slide == "populationArea3"){
+                stage = document.getElementById("populationArea3");
             }
             stageHTML = "<ol>";
             console.log(obj);
