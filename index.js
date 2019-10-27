@@ -11,18 +11,15 @@ function repo_groupLoad(slide) {
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             document.getElementById("pageHeader").innerHTML = "Repo Groups";
-            var obj = JSON.parse('{ "repo_group" : ' + xhttp.responseText + '}'), stage, stageHTML, i, appendText;
+            var obj = JSON.parse('{ "repo_group" : ' + xhttp.responseText + '}'), stage = document.getElementById(slide), stageHTML, i, appendText;
             console.log(slide);
             console.log(obj);
             if (slide === "populationArea1") {
-                document.getElementById("pageHeader").innerHTML = "Repo Groups";
-                stage = document.getElementById("populationArea1");
+                document.getElementById("pageHeader").innerHTML = "Top Committers";
             } else if (slide === "populationArea2") {
                 document.getElementById("pageHeader").innerHTML = "Pull Requests";
-                stage = document.getElementById("populationArea2");
             } else if (slide === "populationArea3") {
                 document.getElementById("pageHeader").innerHTML = "Closed Issues";
-                stage = document.getElementById("populationArea3");
             }
             stageHTML = "<ol>";
             for (i = 0; i < obj.repo_group.length; i += 1) {
@@ -39,18 +36,18 @@ function repo_groupLoad(slide) {
 
 function repo_groupChange(id, slide) {
     var xhttp = new XMLHttpRequest(), selected = document.getElementById(id);
-
     xhttp.onreadystatechange = function () {
         clearPopulationArea();
         document.getElementById("pageHeader").innerHTML = "Repos";
         if (this.readyState === 4 && this.status === 200) {
-            var obj = JSON.parse('{ "repos" : ' + xhttp.responseText + '}'), stage, stageHTML, i, appendText;
+            var obj = JSON.parse('{ "repos" : ' + xhttp.responseText + '}'), stage = document.getElementById(slide), stageHTML, i, appendText;
+            console.log(slide.id + " This");
         
-            if (slide === "populationArea1") {
+            if (slide.id === "populationArea1") {
                 stage = document.getElementById("populationArea1");
-            } else if (slide === "populationArea2") {
+            } else if (slide.id === "populationArea2") {
                 stage = document.getElementById("populationArea2");
-            } else if (slide === "populationArea3") {
+            } else if (slide.id === "populationArea3") {
                 stage = document.getElementById("populationArea3");
             }
             stageHTML = "<ol>";
@@ -59,6 +56,7 @@ function repo_groupChange(id, slide) {
                 appendText = "<li><a href=# onclick='loadVisuals(" + id + "," + obj.repos[i].repo_id + ")'>" + obj.repos[i].repo_name + "</a></li>";
                 stageHTML += appendText;
             }
+            stageHTML += "</ol>";
             stage.innerHTML = stageHTML;
         }
     };
@@ -107,7 +105,7 @@ function pullRequests(repoGroupID, reposID) {
         if (this.readyState === 4 && this.status === 200) {
             var text = '{ "pullRequests" : ' + xhttp.responseText + '}', obj = JSON.parse(text), email, i, committers = "<ol>";
             console.log(obj);
-            for (i = 0; (obj.pullRequests[i].email !== "other_contributors") && i < 10; i++) {
+            for (i = 0; (obj.pullRequests[i] !== null) && (obj.pullRequests[i].email !== "other_contributors") && i < 10; i++) {
                 console.log(i);
                 console.log(obj.pullRequests[i].email);
                 email = obj.pullRequests[i].email;
@@ -121,10 +119,6 @@ function pullRequests(repoGroupID, reposID) {
     xhttp.open("GET", "http://augur.osshealth.io:5000/api/unstable/repo-groups/" + repoGroupID + "/repos/" + reposID + "/pull-request-acceptance-rate", true);
     xhttp.send();
 }
-
- 
-
-
 
 function closedIssues(repoGroupID, reposID) {
     var xhttp = new XMLHttpRequest();
