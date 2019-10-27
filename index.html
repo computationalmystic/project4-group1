@@ -69,10 +69,11 @@
                         repo_groupLoad("populationArea2");
                         break;
                     case 2:
-                        document.getElementById("pageHeader").innerHTML = ""
+                        document.getElementById("pageHeader").innerHTML = "";
                         slide = document.getElementById("slide3");
-                        slide.childNodes[1].innerHTML = "Other";
+                        slide.childNodes[1].innerHTML = "The closed issues are being loaded...";
                         errorArea3.innerHTML = "";
+                        repo_groupLoad("populationArea3");
                         break;
                     default:
                         console.log("There was no target slide.");
