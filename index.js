@@ -1,9 +1,10 @@
 
 function clearPopulationArea(){
     document.getElementById("populationArea1").innerHTML = "";
+    document.getElementById("populationArea2").innerHTML = "";
 }
 
-function repo_groupLoad() {
+function repo_groupLoad(slide) {
     var xhttp = new XMLHttpRequest();
     
     xhttp.onreadystatechange = function() {
@@ -11,13 +12,18 @@ function repo_groupLoad() {
             document.getElementById("pageHeader").innerHTML = "Repo Groups";
             var text = '{ "repo_group" : ' + xhttp.responseText + '}';
             var obj = JSON.parse(text);
-            
+            console.log(slide);
             console.log(obj);
-        
-            stage = document.getElementById("populationArea1");
+            if(slide == "populationArea1"){
+                document.getElementById("pageHeader").innerHTML = "Repo Groups";
+                stage = document.getElementById("populationArea1");
+            } else if(slide == "populationArea2"){
+                document.getElementById("pageHeader").innerHTML = "Pull Requests";
+                stage = document.getElementById("populationArea2");
+            }
             stageHTML = "<ol>"
             for(i = 0; i < obj.repo_group.length; i++){
-                appendText = "<li><a href=# id=" + obj.repo_group[i].repo_group_id + " onclick=repo_groupChange(this.id)>" + obj.repo_group[i].rg_name + "</a></li>";
+                appendText = "<li><a href=# id=" + obj.repo_group[i].repo_group_id + " onclick=repo_groupChange(this.id," + slide +")>" + obj.repo_group[i].rg_name + "</a></li>";
                 stageHTML = stageHTML + appendText;
             }
             stageHTML + "<\ol>";
@@ -28,7 +34,7 @@ function repo_groupLoad() {
     xhttp.send();
 }
 
-function repo_groupChange(id){
+function repo_groupChange(id,slide){
     var xhttp = new XMLHttpRequest();
     var selected = document.getElementById(id);
 
@@ -39,7 +45,11 @@ function repo_groupChange(id){
             var text = '{ "repos" : ' + xhttp.responseText + '}';
             var obj = JSON.parse(text);
         
-            stage = document.getElementById("populationArea1");
+            if(slide == "populationArea1"){
+                stage = document.getElementById("populationArea1");
+            } else if(slide == "populationArea2"){
+                stage = document.getElementById("popukationArea2");
+            }
             stageHTML = "<ol>";
             console.log(obj);
             for(i = 0; i < obj.repos.length; i++){
@@ -93,3 +103,4 @@ function topCommitters(repoGroupID, reposID){
     xhttp.open("GET","http://augur.osshealth.io:5000/api/unstable/repo-groups/" + repoGroupID + "/repos/" + reposID + "/top-committers", true);
     xhttp.send();
 }
+ 

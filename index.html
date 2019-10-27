@@ -59,14 +59,14 @@
                         slide = document.getElementById("slide1");
                         slide.childNodes[1].innerHTML = "The repos are being loaded...";
                         errorArea1.innerHTML = "";
-                        repo_groupLoad();
-                        
+                        repo_groupLoad("populationArea1");
                         break;
                     case 1:
                         document.getElementById("pageHeader").innerHTML = "";
                         slide = document.getElementById("slide2");
                         slide.childNodes[1].innerHTML = "The pull requests are being loaded...";
                         errorArea2.innerHTML = "";
+                        repo_groupLoad("populationArea2");
                         break;
                     case 2:
                         document.getElementById("pageHeader").innerHTML = ""
