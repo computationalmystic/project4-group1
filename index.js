@@ -98,18 +98,44 @@ function pullRequests(repoGroupID, reposID) {
     
     xhttp.onreadystatechange = function () {
         
-        if (this.readyState === 4 && this.status === 500) {
+        if (this.readyState == 4 && this.status == 500) {
             console.log("There was an internal server error. Please try a different repository.");
             document.getElementById("errorArea2").innerHTML = "There was an internal server error. Please try a different repository.";          
         }
-        if (this.readyState === 4 && this.status === 200) {
-            var text = '{ "pullRequests" : ' + xhttp.responseText + '}', obj = JSON.parse(text), email, i, committers = "<ol>";
+        if (this.readyState == 4 && this.status == 200) {
+            var text = '{ "pullRequests" : ' + xhttp.responseText + '}';
+            console.log(text);
+            var obj = JSON.parse(text);
+            var email; 
+            var i;
+            var j = 1;
+            var committers = "<ol>"
             console.log(obj);
-            for (i = 0; (obj.pullRequests[i] !== null) && (obj.pullRequests[i].email !== "other_contributors") && i < 10; i++) {
-                console.log(i);
-                console.log(obj.pullRequests[i].email);
-                email = obj.pullRequests[i].email;
-                committers = committers + "<li>" + email + "  " + obj.pullRequests[i].commits + "</li>";
+            if(obj.pullRequests.length > 10){
+                for (i = obj.pullRequests.length; i>(obj.pullRequests.length - 11); i--) {
+                    console.log(i);
+                    rate = obj.pullRequests[i].rate;
+                    current_date = new Date(obj.pullRequests[i].date);
+                    formatted_date = (current_date.getMonth() + 1) + "-" + current_date.getDate() + "-" + current_date.getFullYear();
+                    committers = committers + "<li><h" + j + ">" + formatted_date + "  " + rate + "</h" + j + "></li>";
+                    j++;
+                }
+            }
+            else{
+                i = obj.pullRequests.length - 1;
+                if(i == -1){
+                    committers = committers + "<li>There are no pull requests in this repo. Please choose a different one.</li>"   
+                }
+                else{    
+                    for(i; i >= 0; i--){
+                        rate = obj.pullRequests[i].rate;
+                        current_date = new Date(obj.pullRequests[i].date);
+                        formatted_date = (current_date.getMonth() + 1) + "-" + current_date.getDate() + "-" + current_date.getFullYear();
+                        committers = committers + "<li><h" + j + ">" + formatted_date + "  " + rate + "</h" + j + "></li>";
+                        j++;
+                    }
+                }
+                
             }
             committers = committers + "</ol>";
             document.getElementById("populationArea2").innerHTML = committers;
@@ -125,19 +151,39 @@ function closedIssues(repoGroupID, reposID) {
     
     xhttp.onreadystatechange = function () {
         
-        if (this.readyState === 4 && this.status === 500) {
+        if (this.readyState == 4 && this.status == 500) {
             console.log("There was an internal server error. Please try a different repository.");
             document.getElementById("errorArea3").innerHTML = "There was an internal server error. Please try a different repository.";           
         }
-        if (this.readyState === 4 && this.status === 200) {
+        if (this.readyState == 4 && this.status == 200) {
             var text = '{ "closedIssues" : ' + xhttp.responseText + '}', obj = JSON.parse(text), email, i, committers = "<ol>";
             console.log(obj);
-            for (i = 0; (obj.closedIssues[i].email !== "other_contributors") && i < 10; i++) {
-                console.log(i);
-                console.log(obj.closedIssues[i].email);
+            var j = 1;
+            if(obj.closedIssues.length > 10){
+                for (i = (obj.closedIssues.length - 1); i > (obj.closedIssues.length - 11); i--) {
+                    
+                    console.log(i);
             
-                email = obj.closedIssues[i].email;
-                committers = committers + "<li>" + email + "  " + obj.closedIssues[i].commits + "</li>";
+                    current_date = new Date(obj.closedIssues[i].date);
+                    formatted_date = (current_date.getMonth() + 1) + "-" + current_date.getDate() + "-" + current_date.getFullYear();
+                    committers = committers + "<li><h" + j + ">" + formatted_date + "  " + obj.closedIssues[i].closed_count + "</h" + j +"></li>";
+                    j++;
+                }
+            }
+            else{
+                
+                i = obj.closedIssues.length - 1;
+                if(i == -1){
+                    committers = committers + "<li>There is no closed issues in this repo. Please choose a different one.</li>"
+                }
+                else{
+                    for(i; i >= 0; i--){
+                        current_date = new Date(obj.closedIssues[i].date);
+                        formatted_date = (current_date.getMonth() + 1) + "-" + current_date.getDate() + "-" + current_date.getFullYear();
+                        committers = committers + "<li><h" + j + ">" + formatted_date + "  " + obj.closedIssues[i].closed_count + "</h" + j +"></li>";
+                        j++;
+                    }
+                }
             }
             committers = committers + "</ol>";
             document.getElementById("populationArea3").innerHTML = committers;
