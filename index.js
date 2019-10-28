@@ -5,6 +5,7 @@ function clearPopulationArea() {
     document.getElementById("populationArea3").innerHTML = "";
 }
 
+
 function repo_groupLoad(slide) {
     var xhttp = new XMLHttpRequest();
     
@@ -37,7 +38,6 @@ function repo_groupLoad(slide) {
 function repo_groupChange(id, slide) {
     var xhttp = new XMLHttpRequest(), selected = document.getElementById(id);
     xhttp.onreadystatechange = function () {
-        clearPopulationArea();
         document.getElementById("pageHeader").innerHTML = "Repos";
         if (this.readyState === 4 && this.status === 200) {
             var obj = JSON.parse('{ "repos" : ' + xhttp.responseText + '}'), stage = document.getElementById(slide), stageHTML, i, appendText;

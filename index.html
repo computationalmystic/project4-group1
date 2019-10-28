@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
     <title>API Calls</title>
     <head>
@@ -13,6 +13,10 @@
         <style>
             .carousel-item{
                 color: white;
+            }
+            
+            #home{
+                margin-left: 100px;
             }
         </style>
     </head>
@@ -43,6 +47,9 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
+        <a id="home" onclick="goHome()" data-target="#myCarousel" data-slide-to="0" href="#">Home</a>
+
+
         
         <div id="footer">
             <p style="color: white; margin-top: 275px;">This was created by: John Burkin, Andrew Cox, Henry Sills</p>
@@ -80,6 +87,11 @@
                         break;
                 }
             });
+            
+            function goHome(){
+                repo_groupLoad("populationArea1");
+
+            }
         
         </script>
     </body>
